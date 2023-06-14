@@ -14,6 +14,7 @@ const App = () => {
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">
+                    gunfight
                     <Sidebar />
                     <AppRouter />
                 </div>
