@@ -10,11 +10,15 @@ const App = () => {
     const { theme } = useTheme();
 
     return (
-        <div className={classNames('app', { hovered: true, selected: true }, [theme, 'cls2', 'cls3'])}>
+        <div className={classNames(
+            'app',
+            { hovered: true, selected: true },
+            [theme, 'cls2', 'cls3'],
+        )}
+        >
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">
-                    gunfight
                     <Sidebar />
                     <AppRouter />
                 </div>
