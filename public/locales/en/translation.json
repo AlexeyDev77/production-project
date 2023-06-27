@@ -4,5 +4,7 @@
   "Страница не найдена": "Page not found",
   "Произошла непредвиденная ошибка": "Something went wrong",
   "Обновить страницу": "Reload Page",
-  "Пробросить ошибку": "throw Error"
+  "Пробросить ошибку": "throw Error",
+  "Главная": "Main",
+  "О сайте": "About us"
 }
