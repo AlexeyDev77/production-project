@@ -9,7 +9,7 @@ interface PortalProps {
 export const Portal = (props: PortalProps) => {
     const {
         children,
-        element = document.querySelector('#storybook-root') || document.body,
+        element = document.body,
     } = props;
 
     return createPortal(children, element);

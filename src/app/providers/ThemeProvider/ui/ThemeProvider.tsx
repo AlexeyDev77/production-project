@@ -1,5 +1,5 @@
 import React, {
-    FC, ReactNode, useMemo, useState,
+    FC, ReactNode, useEffect, useMemo, useState,
 } from 'react';
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContext';
 
@@ -21,6 +21,18 @@ const ThemeProvider: FC<ThemeProviderProps> = (props) => {
         theme,
         setTheme,
     }), [theme]);
+
+    useEffect(() => {
+        document.documentElement.dataset.theme = initialTheme || theme;
+    }, [theme, initialTheme]);
+
+    // useEffect(() => {
+    //     document.body.classList.add(theme);
+    //
+    //     return () => {
+    //         document.body.classList.remove(theme);
+    //     };
+    // }, [theme]);
 
     return (
         <ThemeContext.Provider value={defaultProps}>

@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Theme } from 'app/providers/ThemeProvider';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { AppLink, AppLinkTheme } from './AppLink';
 
 const meta: Meta<typeof AppLink> = {
@@ -8,38 +6,23 @@ const meta: Meta<typeof AppLink> = {
     component: AppLink,
     args: {
         to: '/',
+        children: 'Link',
     },
 };
 
 export default meta;
 type Story = StoryObj<typeof AppLink>;
 
-export const Primary: Story = {
+export const PrimaryLight: Story = {
     args: {
-        children: 'Text',
+        ...meta.args,
         theme: AppLinkTheme.PRIMARY,
     },
 };
 
-export const Secondary: Story = {
+export const InvertedLight: Story = {
     args: {
-        children: 'Text',
-        theme: AppLinkTheme.SECONDARY,
+        ...PrimaryLight.args,
+        theme: AppLinkTheme.INVERTED_PRIMARY,
     },
-};
-
-export const PrimaryDark: Story = {
-    args: {
-        children: 'Text',
-        theme: AppLinkTheme.PRIMARY,
-    },
-    decorators: [ThemeDecorator(Theme.DARK)],
-};
-
-export const SecondaryDark: Story = {
-    args: {
-        children: 'Text',
-        theme: AppLinkTheme.SECONDARY,
-    },
-    decorators: [ThemeDecorator(Theme.DARK)],
 };

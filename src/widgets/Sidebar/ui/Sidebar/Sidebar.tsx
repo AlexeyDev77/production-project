@@ -39,7 +39,7 @@ export const Sidebar = ({ className } : SidebarProps) => {
             </Button>
             <div className={cls.items}>
                 <AppLink
-                    theme={AppLinkTheme.SECONDARY}
+                    theme={AppLinkTheme.INVERTED_PRIMARY}
                     to={RoutePath[AppRoutes.MAIN]}
                     className={cls.item}
                 >
@@ -49,7 +49,7 @@ export const Sidebar = ({ className } : SidebarProps) => {
                     </span>
                 </AppLink>
                 <AppLink
-                    theme={AppLinkTheme.SECONDARY}
+                    theme={AppLinkTheme.INVERTED_PRIMARY}
                     to={RoutePath[AppRoutes.ABOUT]}
                     className={cls.item}
                 >
