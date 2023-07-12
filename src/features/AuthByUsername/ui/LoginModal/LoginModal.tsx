@@ -17,7 +17,11 @@ export const LoginModal = (props : LoginModalProps) => {
 
     return (
         <Modal
-            className={classNames('', {}, [className])}
+            className={classNames(
+                '',
+                {},
+                [className],
+            )}
             isOpen={isOpen}
             onClose={onClose}
         >
