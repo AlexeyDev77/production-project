@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import { DefinePlugin, RuleSetRule } from 'webpack';
 import path from 'path';
-import { RuleSetRule } from 'webpack';
 import { BuildPaths } from '../build/types/config';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader';
@@ -19,6 +19,7 @@ const config: StorybookConfig = {
     docs: {
         autodocs: 'tag',
     },
+    staticDirs: ['../../public'],
     webpackFinal: async (config) => {
         const paths: BuildPaths = {
             build: '',
@@ -39,6 +40,9 @@ const config: StorybookConfig = {
             return rule;
         });
         config.module.rules.push(buildSvgLoader());
+        config.plugins.push(new DefinePlugin({
+            __IS_DEV__: true,
+        }));
         return config;
     },
 };
