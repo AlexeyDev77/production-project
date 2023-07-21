@@ -5,24 +5,42 @@ import { Input } from 'shared/ui/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
-import { loginActions } from '../../model/slice/loginSlice';
+import { ReducersList, useDynamicModuleLoad } from 'shared/lib/useDynamicModuleLoad/useDynamicModuleLoad';
+import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByUsername } from '../../model/services/loginByUsername/lognByUsername';
 import cls from './LoginForm.module.scss';
 
-interface LoginFormProps {
+export interface LoginFormProps {
     className?: string;
 }
 
-export const LoginForm = memo(({ className } : LoginFormProps) => {
+const initialReducers: ReducersList = {
+    loginForm: loginReducer,
+};
+
+const LoginForm = memo(({ className } : LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const {
-        username,
-        password,
-        isLoading,
-        error,
-    } = useSelector(getLoginState);
+    const username = useSelector(getLoginUsername);
+    const password = useSelector(getLoginPassword);
+    const isLoading = useSelector(getLoginIsLoading);
+    const error = useSelector(getLoginError);
+    useDynamicModuleLoad({ reducers: initialReducers, removeAfterUnmount: true });
+    // const store = useStore() as ReduxStoreWithManger;
+    //
+    // useEffect(() => {
+    //     store.reducerManager.add('loginForm', loginReducer);
+    //     dispatch({ type: '@INIT loginForm reducer' });
+    //     return () => {
+    //         store.reducerManager.remove('loginForm');
+    //         dispatch({ type: '@DESTROY loginForm reducer' });
+    //     };
+    //     // eslint-disable-next-line
+    // }, []);
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value));
@@ -66,3 +84,5 @@ export const LoginForm = memo(({ className } : LoginFormProps) => {
         </div>
     );
 });
+
+export default LoginForm;
