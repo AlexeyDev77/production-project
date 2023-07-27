@@ -5,7 +5,6 @@ import { useCallback, useState } from 'react';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
-import { USER_LOCALSTORAGE_KEY } from 'shared/const/localeStorage';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -27,9 +26,7 @@ export const Navbar = ({ className } : NavbarProps) => {
     }, []);
 
     const onLogOut = useCallback(() => {
-        localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         dispatch(userActions.logout());
-        setIsAuthModal(false);
     }, [dispatch]);
 
     if (authData) {
