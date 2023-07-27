@@ -10,6 +10,7 @@ const reducers: ReducersList = {
 const ProfilePage = () => {
     const { t } = useTranslation('profile');
     useDynamicModuleLoad({ reducers, removeAfterUnmount: true });
+
     return (
         <div>
             {t('Страница профиля')}
