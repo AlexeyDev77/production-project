@@ -12,5 +12,5 @@ type Story = StoryObj<typeof ProfilePage>;
 
 export const Default: Story = {
     args: {},
-    decorators: [StoreDecorator({})],
+    decorators: [StoreDecorator()],
 };
