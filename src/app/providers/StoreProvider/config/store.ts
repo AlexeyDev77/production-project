@@ -35,7 +35,6 @@ export function createReduxStore(
             },
         }).concat(authMiddleware),
     });
-
     // @ts-ignore
     store.reducerManager = reduceManager;
 
