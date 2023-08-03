@@ -7,7 +7,7 @@ import { NavigateOptions } from 'react-router';
 import { CombinedState, Reducer } from 'redux';
 import { authMiddleware } from './middlewares/authMiddleware/authMiddleware';
 import { createReducerManager } from './reducerManger';
-import { StateScheme } from './StateScheme';
+import { StateScheme, ThunkExtraArg } from './StateScheme';
 
 export function createReduxStore(
     initialState?: StateScheme,
@@ -22,16 +22,18 @@ export function createReduxStore(
 
     const reduceManager = createReducerManager(rootReducer);
 
+    const extraArg: ThunkExtraArg = {
+        api: $api,
+        navigate,
+    };
+
     const store = configureStore({
         reducer: reduceManager.reduce as Reducer<CombinedState<StateScheme>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({
             thunk: {
-                extraArgument: {
-                    api: $api,
-                    navigate,
-                },
+                extraArgument: extraArg,
             },
         }).concat(authMiddleware),
     });

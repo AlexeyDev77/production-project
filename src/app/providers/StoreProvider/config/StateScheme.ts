@@ -27,7 +27,7 @@ export interface ReducerManger {
     remove: (key: StateSchemeKey) => void;
 }
 
-export interface ReduxStoreWithManger extends EnhancedStore<StateScheme> {
+export interface ReduxStoreWithManager extends EnhancedStore<StateScheme> {
     reducerManager: ReducerManger;
 }
 
@@ -37,6 +37,7 @@ export interface ThunkExtraArg {
 }
 
 export interface ThunkConfig<T> {
+    state: StateScheme;
     extra: ThunkExtraArg;
     rejectValue: T;
 }
