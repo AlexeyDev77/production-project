@@ -12,5 +12,14 @@ type Story = StoryObj<typeof Sidebar>;
 
 export const Default: Story = {
     args: {},
-    decorators: [StoreDecorator()],
+    decorators: [StoreDecorator({
+        user: { authData: {} },
+    })],
+};
+
+export const NoAuth: Story = {
+    args: {},
+    decorators: [StoreDecorator({
+        user: {},
+    })],
 };
